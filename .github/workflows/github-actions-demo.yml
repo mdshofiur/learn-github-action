@@ -19,8 +19,12 @@ jobs:
 
          - shell: bash
            run: |
-              cd learn-github-actions
               make --version
+
+         # - shell: bash
+         #   run: |
+         #      cd learn-github-actions
+         #      make --version
 
          - name: Display event information
            run: |
