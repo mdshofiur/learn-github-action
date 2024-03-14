@@ -11,18 +11,10 @@ jobs:
          - name: Checkout repository code
            uses: actions/checkout@v2
 
-         - name: Go to the Folder
-           run: cd ${{ github.workspace }}
-        #    run: cd learn-github-action
-
-         - name: List files in the repository
-           run: ls ${{ github.workspace }}
-
-         - name: Update sudo
-           run: sudo apt update
-
-         - name: Install make
-           run: sudo apt install make -y
+         - shell: bash
+           run: |
+              sudo apt-get update
+              sudo apt-get install -y make curl
 
          - name: Display event information
            run: |
