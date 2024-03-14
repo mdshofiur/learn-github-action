@@ -12,8 +12,8 @@ jobs:
            uses: actions/checkout@v2
 
          - name: Go to the Folder
-           #    run: cd ${{ github.workspace }}
-           run: cd learn-github-action
+           run: cd ${{ github.workspace }}
+        #    run: cd learn-github-action
 
          - name: List files in the repository
            run: ls ${{ github.workspace }}
