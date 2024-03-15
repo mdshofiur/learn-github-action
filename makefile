@@ -18,4 +18,4 @@ run:
 clean:
     docker rmi $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
-PHONY: build push run clean
+.PHONY: build push run stop clean
