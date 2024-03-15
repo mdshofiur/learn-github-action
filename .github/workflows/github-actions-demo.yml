@@ -26,7 +26,8 @@ jobs:
               ls
 
          - name: List files in the repository
-           run: ${{ github.workspace }}
+           run: |
+              ls ${{ github.workspace }}
 
          # - shell: bash
          #   run: |
