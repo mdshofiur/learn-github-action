@@ -21,18 +21,13 @@ jobs:
            run: |
               make --version
 
-         - shell: bash
-           run: |
-              ls
-
          - name: List files in the repository
            run: |
               ls ${{ github.workspace }}
-
-         # - shell: bash
-         #   run: |
-         #      cd learn-github-actions
-         #      make --version
+         
+         - shell: bash
+           run: |
+              make build
 
          - name: Display event information
            run: |

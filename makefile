@@ -2,12 +2,6 @@
 DOCKER_IMAGE_NAME := my-docker-image
 DOCKER_IMAGE_TAG := latest
 
-
-.PHONY: all build run clean
-
-# Default target
-all: build
-
 # Build the Docker image
 build:
     docker build -t $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) .
@@ -23,3 +17,5 @@ run:
 # Remove the Docker image
 clean:
     docker rmi $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
+
+PHONY: build push run clean
