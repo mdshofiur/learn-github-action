@@ -3,7 +3,13 @@ DOCKER_IMAGE_NAME := my-docker-image
 DOCKER_IMAGE_TAG := latest
 
 
-.PHONY: build push run clean
+
+.PHONY: docker-login build push run clean
+
+
+docker-login:
+	@echo "Docker login..."
+	@docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
 
 build:
 	@echo "Docker build..."
