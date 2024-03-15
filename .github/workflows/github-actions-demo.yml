@@ -21,6 +21,12 @@ jobs:
            run: |
               make --version
 
+         - shell: bash
+           run: |
+              pwd
+              ls -al
+              
+
          # - shell: bash
          #   run: |
          #      cd learn-github-actions
