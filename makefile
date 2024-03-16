@@ -15,7 +15,7 @@ build:
 	@echo "Docker build..."
 	@docker build -t $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) .
 
-push: push
+push: docker-login
 	@echo "Docker push..."
 	@docker push $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
