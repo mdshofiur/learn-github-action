@@ -24,7 +24,7 @@ jobs:
          - name: List files in the repository
            run: |
               ls ${{ github.workspace }}
-         
+
          # - shell: bash
          #   run: |
          #      make build
@@ -32,6 +32,10 @@ jobs:
          - name: docker login
            run: |
               make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
+
+         - name: build docker image
+           run: |
+              make build
 
          - name: print docker username
            run: |
