@@ -24,10 +24,6 @@ jobs:
            run: |
               ls ${{ github.workspace }}
 
-         # - shell: bash
-         #   run: |
-         #      make build
-
          - name: docker login
            run: |
               make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
@@ -39,10 +35,6 @@ jobs:
          - name: push docker image
            run: |
               make push
-
-         - name: print docker username
-           run: |
-              echo ${{ secrets.DOCKER_USERNAME }}
 
          - name: Display event information
            run: |
