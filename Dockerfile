@@ -13,6 +13,10 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
+# Print the contents of the working directory
+RUN ls -la
+
+
 # Expose the port the app runs on
 EXPOSE 3000
 
