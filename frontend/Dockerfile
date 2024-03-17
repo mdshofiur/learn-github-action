@@ -15,8 +15,9 @@ RUN ls -la
 
 RUN npm run build
 
+RUN pwd
 
-RUN pwd && ls -la
+RUN ls -la
 
 
 EXPOSE 3000
