@@ -1,6 +1,6 @@
 # Define variables
-DOCKER_IMAGE_NAME := my-docker-image
-DOCKER_IMAGE_TAG := latest
+DOCKER_IMAGE_NAME := $(DOCKER_USERNAME)/$(DOCKER_REPOSITORY)
+DOCKER_IMAGE_TAG := $(shell git rev-parse --short HEAD)
 
 
 

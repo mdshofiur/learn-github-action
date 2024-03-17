@@ -15,7 +15,6 @@ jobs:
            run: |
               sudo apt-get update
               sudo apt-get install -y make curl
-              make --version
 
          - shell: bash
            run: |
@@ -35,10 +34,12 @@ jobs:
 
          - name: build docker image
            run: |
+              cd frontend
               make build
 
          - name: push docker image
            run: |
+              cd frontend
               make push
 
          - name: print docker username
