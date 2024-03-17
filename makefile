@@ -17,7 +17,7 @@ build:
 	@echo "Docker build..."
 	@docker build -t $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) ./frontend
 
-push: docker-login
+push:
 	@echo "Docker push..."
 	@docker push $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
