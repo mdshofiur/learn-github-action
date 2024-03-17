@@ -1,7 +1,9 @@
 # Define variables
-DOCKER_IMAGE_NAME := $(DOCKER_USERNAME)/$(DOCKER_REPOSITORY)
-DOCKER_IMAGE_TAG := $(shell git rev-parse --short HEAD)
+DOCKER_IMAGE_NAME := frontendNextJs
+DOCKER_IMAGE_TAG := 1.0
 
+# DOCKER_IMAGE_NAME := $(DOCKER_USERNAME)/$(DOCKER_REPOSITORY)
+# DOCKER_IMAGE_TAG := $(shell git rev-parse --short HEAD)
 
 
 .PHONY: docker-login build push run clean
