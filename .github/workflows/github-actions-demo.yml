@@ -30,16 +30,14 @@ jobs:
 
          - name: docker login
            run: |
-              make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
+              make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}" --password-stdin
 
          - name: build docker image
            run: |
-              cd frontend
               make build
 
          - name: push docker image
            run: |
-              cd frontend
               make push
 
          - name: print docker username
