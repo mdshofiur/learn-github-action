@@ -1,5 +1,5 @@
 # Define variables
-DOCKER_IMAGE_NAME := frontendnextjs
+DOCKER_IMAGE_NAME := shafikur/frontendnextjs
 DOCKER_IMAGE_TAG := 1.0
 
 # DOCKER_IMAGE_NAME := $(DOCKER_USERNAME)/$(DOCKER_REPOSITORY)
