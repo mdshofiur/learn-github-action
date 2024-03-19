@@ -68,13 +68,14 @@ jobs:
            with:
               host: ${{ secrets.HOST }}
               username: ${{ secrets.USERNAME }}
-              password: ${{ secrets.PASSWORD }}
+              key: ${{ secrets.KEY }}
               port: ${{ secrets.PORT }}
-              proxy_host: ${{ secrets.PROXY_HOST }}
-              proxy_username: ${{ secrets.PROXY_USERNAME }}
-              proxy_key: ${{ secrets.PROXY_KEY }}
-              proxy_port: ${{ secrets.PROXY_PORT }}
               passphrase: ${{ secrets.PASSPHRASE }}
+              # proxy_host: ${{ secrets.PROXY_HOST }}
+              # proxy_username: ${{ secrets.PROXY_USERNAME }}
+              # proxy_key: ${{ secrets.PROXY_KEY }}
+              # proxy_port: ${{ secrets.PROXY_PORT }}
+              # passphrase: ${{ secrets.PASSPHRASE }}
               script: |
                  sudo apt update
                  sudo apt install -y curl nginx
