@@ -24,9 +24,25 @@ jobs:
            run: |
               ls ${{ github.workspace }}
 
-         # - shell: bash
-         #   run: |
-         #      make build
+         - name: Configure AWS Credentials
+           uses: aws-actions/configure-aws-credentials@v4
+           with:
+              aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+              aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              aws-region: us-east-1
+
+         - name: Terraform Setup
+           uses: hashicorp/setup-terraform@v3
+           with:
+              terraform_version: '1.7.2'
+              cli_config_credentials_hostname: 'app.terraform.io'
+              cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+         - name: Entry the terraform directory
+           run: |
+              cd terraform
+              ls -la
+              make plan
 
          - name: docker login
            run: |
