@@ -42,7 +42,7 @@ jobs:
            run: |
               cd terraform
               ls -la
-              make plan
+            #   make plan
 
          - name: docker login
            run: |
