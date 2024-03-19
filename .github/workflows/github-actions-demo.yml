@@ -35,7 +35,7 @@ jobs:
            uses: hashicorp/setup-terraform@v3
            with:
               terraform_version: '1.7.2'
-            #   cli_config_credentials_hostname: 'app.terraform.io'
+              cli_config_credentials_hostname: 'app.terraform.io'
               cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
            env: 
              ACTIONS_RUNNER_DEBUG: true
@@ -49,17 +49,17 @@ jobs:
                ACTIONS_RUNNER_DEBUG: true
          #   working-directory: ./terraform
 
-         # - name: docker login
-         #   run: |
-         #      make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
+         - name: docker login
+           run: |
+              make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
 
-         # - name: build docker image
-         #   run: |
-         #      make build
+         - name: build docker image
+           run: |
+              make build
 
-         # - name: push docker image
-         #   run: |
-         #      make push
+         - name: push docker image
+           run: |
+              make push
 
          - name: Display event information
            run: |
