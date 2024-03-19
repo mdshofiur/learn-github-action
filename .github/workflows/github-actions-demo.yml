@@ -43,6 +43,7 @@ jobs:
               cd terraform
               ls -la
             #   make plan
+           working-directory: terraform
 
          - name: docker login
            run: |
