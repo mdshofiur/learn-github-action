@@ -24,44 +24,40 @@ jobs:
            run: |
               ls ${{ github.workspace }}
 
-        #  - name: Configure AWS Credentials
-        #    uses: aws-actions/configure-aws-credentials@v4
-        #    with:
-        #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        #       aws-region: us-east-1
+         #  - name: Configure AWS Credentials
+         #    uses: aws-actions/configure-aws-credentials@v4
+         #    with:
+         #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         #       aws-region: us-east-1
 
-        #  - name: Terraform Setup
-        #    uses: hashicorp/setup-terraform@v3
-        #    with:
-        #       terraform_version: '1.7.2'
-        #       cli_config_credentials_hostname: 'app.terraform.io'
-        #       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-        #    env: 
-        #      ACTIONS_RUNNER_DEBUG: true
-       
-        #  - name: Entry the terraform directory
-        #    run: ls -la
-         
-           
-         
-        #  - name: Terraform Plan
-        #    run: |
-        #       cd terraform
-        #       make plan
-        #    env: 
-        #        ACTIONS_RUNNER_DEBUG: true
-        #    #   working-directory: ./terraform
+         #  - name: Terraform Setup
+         #    uses: hashicorp/setup-terraform@v3
+         #    with:
+         #       terraform_version: '1.7.2'
+         #       cli_config_credentials_hostname: 'app.terraform.io'
+         #       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+         #    env:
+         #      ACTIONS_RUNNER_DEBUG: true
 
+         #  - name: Entry the terraform directory
+         #    run: ls -la
 
-        #  - name: Terraform Apply
-        #    run: |
-        #        cd terraform
-        #        make apply
-        #    env: 
-        #        ACTIONS_RUNNER_DEBUG: true
-        #    #   working-directory: ./terraform
+         #  - name: Terraform Plan
+         #    run: |
+         #       cd terraform
+         #       make plan
+         #    env:
+         #        ACTIONS_RUNNER_DEBUG: true
+         #    #   working-directory: ./terraform
 
+         #  - name: Terraform Apply
+         #    run: |
+         #        cd terraform
+         #        make apply
+         #    env:
+         #        ACTIONS_RUNNER_DEBUG: true
+         #    #   working-directory: ./terraform
 
          - name: ssh proxy command
            uses: appleboy/ssh-action@v1.0.3
@@ -71,29 +67,26 @@ jobs:
               key: ${{ secrets.KEY }}
               port: ${{ secrets.PORT }}
               passphrase: ${{ secrets.PASSPHRASE }}
-              # proxy_host: ${{ secrets.PROXY_HOST }}
-              # proxy_username: ${{ secrets.PROXY_USERNAME }}
-              # proxy_key: ${{ secrets.PROXY_KEY }}
-              # proxy_port: ${{ secrets.PROXY_PORT }}
-              # passphrase: ${{ secrets.PASSPHRASE }}
+              proxy_host: ${{ secrets.PROXY_HOST }}
+              proxy_username: ${{ secrets.PROXY_USERNAME }}
+              proxy_key: ${{ secrets.PROXY_KEY }}
+              proxy_port: ${{ secrets.PROXY_PORT }}
               script: |
                  sudo apt update
                  sudo apt install -y curl nginx
                  echo "🎉 Hello Word!"
 
+         #  - name: docker login
+         #    run: |
+         #       make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
 
+         #  - name: build docker image
+         #    run: |
+         #       make build
 
-        #  - name: docker login
-        #    run: |
-        #       make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
-
-        #  - name: build docker image
-        #    run: |
-        #       make build
-
-        #  - name: push docker image
-        #    run: |
-        #       make push
+         #  - name: push docker image
+         #    run: |
+         #       make push
 
          - name: Display event information
            run: |
