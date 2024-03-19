@@ -39,15 +39,28 @@ jobs:
               cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
            env: 
              ACTIONS_RUNNER_DEBUG: true
-
+       
          - name: Entry the terraform directory
+           run: ls -la
+         
+           
+         
+         - name: Terraform Plan
            run: |
               cd terraform
-              ls -la
               make plan
            env: 
                ACTIONS_RUNNER_DEBUG: true
-         #   working-directory: ./terraform
+           #   working-directory: ./terraform
+
+
+         - name: Terraform Apply
+           run: |
+               cd terraform
+               make apply
+           env: 
+               ACTIONS_RUNNER_DEBUG: true
+           #   working-directory: ./terraform
 
          - name: docker login
            run: |
