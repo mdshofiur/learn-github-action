@@ -71,6 +71,7 @@ jobs:
               proxy_username: ${{ secrets.PROXY_USERNAME }}
               proxy_key: ${{ secrets.PROXY_KEY }}
               proxy_port: ${{ secrets.PROXY_PORT }}
+              proxy_passphrase: ${{ secrets.PROXY_PASSPHRASE }}
               script: |
                  sudo apt update
                  sudo apt install -y curl nginx
