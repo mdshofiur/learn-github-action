@@ -1,64 +1,80 @@
 name: GitHub Actions Demo
+# Run name dynamically generated based on the actor triggering the action
 # run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+# Triggers the workflow on push events to the main branch
 on:
    push:
       branches:
          - main
+
 jobs:
    Explore-Github-Actions:
+      # Specifies the operating system for the job
       runs-on: ubuntu-latest
+
       steps:
+         # Step to checkout the repository code
          - name: Checkout repository code
            uses: actions/checkout@v2
 
+         # Step to install necessary dependencies (make, curl)
          - shell: bash
            run: |
               sudo apt-get update
               sudo apt-get install -y make curl
 
+         # Step to verify make version
          - shell: bash
            run: |
               make --version
 
+         # Step to list files in the repository
          - name: List files in the repository
            run: |
               ls ${{ github.workspace }}
 
-         #  - name: Configure AWS Credentials
-         #    uses: aws-actions/configure-aws-credentials@v4
-         #    with:
-         #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-         #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         #       aws-region: us-east-1
+         # Step to configure AWS credentials
+         - name: Configure AWS Credentials
+           uses: aws-actions/configure-aws-credentials@v4
+           with:
+              aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+              aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              aws-region: us-east-1
 
-         #  - name: Terraform Setup
-         #    uses: hashicorp/setup-terraform@v3
-         #    with:
-         #       terraform_version: '1.7.2'
-         #       cli_config_credentials_hostname: 'app.terraform.io'
-         #       cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-         #    env:
-         #      ACTIONS_RUNNER_DEBUG: true
+         # Step to setup Terraform
+         - name: Terraform Setup
+           uses: hashicorp/setup-terraform@v3
+           with:
+              terraform_version: '1.7.2'
+              cli_config_credentials_hostname: 'app.terraform.io'
+              cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+           env:
+              ACTIONS_RUNNER_DEBUG: true
 
-         #  - name: Entry the terraform directory
-         #    run: ls -la
+         # Step to enter the terraform directory and list files
+         - name: Entry the terraform directory
+           run: ls -la
 
-         #  - name: Terraform Plan
-         #    run: |
-         #       cd terraform
-         #       make plan
-         #    env:
-         #        ACTIONS_RUNNER_DEBUG: true
-         #    #   working-directory: ./terraform
+         # Step to execute Terraform plan
+         - name: Terraform Plan
+           run: |
+              cd terraform
+              make plan
+           env:
+              ACTIONS_RUNNER_DEBUG: true
+           #   working-directory: ./terraform
 
-         #  - name: Terraform Apply
-         #    run: |
-         #        cd terraform
-         #        make apply
-         #    env:
-         #        ACTIONS_RUNNER_DEBUG: true
-         #    #   working-directory: ./terraform
+         # Step to execute Terraform apply
+         - name: Terraform Apply
+           run: |
+              cd terraform
+              make apply
+           env:
+              ACTIONS_RUNNER_DEBUG: true
+           #   working-directory: ./terraform
 
+         # Step to execute SSH proxy command
          - name: ssh proxy command
            uses: appleboy/ssh-action@v1.0.3
            with:
@@ -76,31 +92,37 @@ jobs:
                  sudo apt update
                  sudo apt install -y curl docker.io docker-compose
                  echo "🎉 Hello Word!"
-              timeout: 60s
 
-         #  - name: docker login
-         #    run: |
-         #       make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
+         # Step to login to Docker
+         - name: docker login
+           run: |
+              make docker-login DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}" DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
 
-         #  - name: build docker image
-         #    run: |
-         #       make build
+         # Step to build Docker image
+         - name: build docker image
+           run: |
+              make build
 
-         #  - name: push docker image
-         #    run: |
-         #       make push
+         # Step to push Docker image
+         - name: push docker image
+           run: |
+              make push
 
+         # Step to display event information
          - name: Display event information
            run: |
               echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
               echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
               echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
+         # Step to display repository information
          - name: Display repository information
            run: |
               echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
               echo "🖥️ The workflow is now ready to test your code on the runner."
               ls ${{ github.workspace }}
 
+         # Step to display job status
          - name: Display job status
            run: echo "🍏 This job's status is ${{ job.status }}."
+      
