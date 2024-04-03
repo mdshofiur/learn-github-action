@@ -92,6 +92,19 @@ jobs:
                  sudo apt update
                  sudo apt install -y curl docker.io docker-compose
                  echo "🎉 Hello Word!"
+         
+         - name: SSH Nginx Proxy Command 
+           uses: appleboy/ssh-action@master
+           with:
+             host: ${{ secrets.HOST }}
+             username: ${{ secrets.USERNAME }}
+             key: ${{ secrets.KEY }}
+             port: ${{ secrets.PORT }}
+             script: |
+               echo "🎉 Hello Word!"
+               sudo apt update
+               sudo apt install -y nginx
+               
 
          # Step to login to Docker
          - name: docker login
